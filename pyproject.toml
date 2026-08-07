@@ -7,7 +7,21 @@ authors = [
     { name = "narendrasinghkhinchi", email = "narendrasingh30324@gmail.com" }
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "fastapi>=0.115.0",
+    "uvicorn>=0.30.0",
+    "pydantic-settings>=2.5.2",
+    "sqlalchemy>=2.0.35",
+    "asyncpg>=0.29.0",
+    "alembic>=1.13.3",
+    "pgvector>=0.3.5",
+]
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.3",
+    "httpx>=0.27.0",
+    "httpx2>=2.9.1",
+]
 
 [project.scripts]
 talk-to-pdf = "talk_to_pdf:main"
