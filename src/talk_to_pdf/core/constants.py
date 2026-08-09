@@ -1,0 +1,1 @@
+QUEUE_DOCUMENT_PROCESSING = "document_processing"

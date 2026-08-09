@@ -15,7 +15,10 @@ dependencies = [
     "asyncpg>=0.29.0",
     "alembic>=1.13.3",
     "pgvector>=0.3.5",
-    "python-multipart>=0.0.9"
+    "python-multipart>=0.0.9",
+    "aio-pika>=9.4.0",
+    "pypdf>=4.1.0",
+
 ]
 [project.optional-dependencies]
 dev = [

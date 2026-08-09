@@ -5,6 +5,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from talk_to_pdf.core.database import get_db
 from talk_to_pdf.services.storage import storage_provider 
 from talk_to_pdf.models.document import Document, DocumentStatus
+from talk_to_pdf.core.rabbitmq import publish_message
+from talk_to_pdf.core.constants import QUEUE_DOCUMENT_PROCESSING
 
 router = APIRouter(prefix="/documents", tags=["Documents"])
 MAX_FILE_SIZE = 10*1024*1024
@@ -42,6 +44,12 @@ async def upload_document(
         saved_path = await storage_provider.save_file(str(doc_id), file)
         db_document.storage_path = saved_path 
         await db.commit()
+
+        # Send a job to the queue for the AI Engine to pick up
+        await publish_message(
+            queue_name=QUEUE_DOCUMENT_PROCESSING, 
+            message_body=str(doc_id)
+        )
 
         return {
             "message": "File uploaded successfully",

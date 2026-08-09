@@ -7,6 +7,8 @@ class Setting(BaseSettings):
      # Using asyncpg driver. Default points to a local postgres instance.
     database_url: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/talk_to_pdf"
 
+    rabbitmq_url: str = "amqp://admin:admin@localhost:5672/"
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",

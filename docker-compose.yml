@@ -18,6 +18,24 @@ services:
     ports:
       - "8080:8080"
 
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: talk_to_pdf_rabbitmq
+    restart: always
+    ports:
+      - "5672:5672" # The port the API uses to talk to RabbitMQ
+      - "15672:15672" # The port for the Management Web UI
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+
+  redis:
+    image: redis:7-alpine
+    container_name: talk_to_pdf_redis
+    restart: always
+    ports:
+      - "6379:6379"
+
 volumes:
   # This named volume ensures your database data isn't lost if the container stops
   postgres_data: 
