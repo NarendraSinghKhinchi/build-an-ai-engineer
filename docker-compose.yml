@@ -11,6 +11,13 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
+  adminer:
+    image: adminer
+    container_name: talk_to_pdf_adminer
+    restart: always
+    ports:
+      - "8080:8080"
+
 volumes:
   # This named volume ensures your database data isn't lost if the container stops
   postgres_data: 

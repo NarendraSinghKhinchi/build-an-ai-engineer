@@ -187,13 +187,9 @@ Distributed deployments
 
 Multi-tenancy
 
-Caching
-
 Horizontal scaling
 
 Kubernetes
-
-Microservices
 
 These may be introduced later only if they provide educational value.
 
@@ -232,6 +228,14 @@ Migration
 Validation
 
 - Pydantic
+
+Message Broker
+
+- RabbitMQ
+
+Caching / Shared State
+
+- Redis
 
 LLM
 
@@ -291,7 +295,11 @@ AI Agents.
 
 MCP.
 
-Scalable backend architecture.
+Scalable backend architecture (Microservices).
+
+Distributed Systems (Message Queues, Pub/Sub).
+
+Caching and Shared State.
 
 Provider abstraction.
 

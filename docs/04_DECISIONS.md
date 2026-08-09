@@ -426,6 +426,92 @@ Never, unless the project changes from a learning platform to a throwaway protot
 
 ---
 
+# Decision 005
+
+## Microservices Architecture
+
+**Status**
+
+Accepted
+
+### Context
+
+To simulate production-scale workloads, we want to isolate the web layer from the execution layer. The API should remain highly responsive, while heavy AI workloads (parsing, chunking, embedding generation) run independently.
+
+---
+
+### Options Considered
+
+#### Option 1
+
+Monolithic architecture (Everything runs in the FastAPI process).
+
+Advantages
+
+- Extremely simple deployment.
+- No network boundaries.
+- Easier to reason about for beginners.
+
+Disadvantages
+
+- Heavy CPU tasks block the event loop (if not handled carefully).
+- Cannot scale the AI workers independently from the web servers.
+- Fails to teach distributed systems concepts.
+
+---
+
+#### Option 2
+
+Microservices architecture (`main-api` + `ai-engine` separated by RabbitMQ).
+
+Advantages
+
+- True isolation of web and execution layers.
+- Teaches message queues, pub/sub, and asynchronous workers.
+- Mimics real-world enterprise AI deployments (like Fetch.ai).
+
+Disadvantages
+
+- Higher operational complexity (requires RabbitMQ and Redis).
+- Harder to debug cross-service communication.
+
+---
+
+### Decision
+
+Split the platform into a `main-api` and an `ai-engine`. 
+Use RabbitMQ for asynchronous task routing.
+Use Redis for shared state, caching, and Pub/Sub streaming.
+
+---
+
+### Rationale
+
+While a monolith is simpler, the goal of this project is to learn AI engineering at a production scale. Introducing message queues and separated workers forces us to handle race conditions, state management, and real-time cross-service streaming, which are highly valuable interview topics.
+
+---
+
+### Consequences
+
+Positive
+
+- Independent scaling of the AI engine.
+- Better understanding of distributed messaging.
+- More robust and production-like system.
+
+Negative
+
+- Slower development speed due to infrastructure overhead.
+- Increased cognitive load for local setup.
+
+---
+
+### Revisit When
+
+Never. This is a foundational architectural decision that will persist throughout the project.
+
+---
+
 # Future Decisions
 
 Examples of future decisions that belong in this document:

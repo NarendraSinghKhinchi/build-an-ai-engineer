@@ -1,6 +1,7 @@
 import logging
 from fastapi import FastAPI 
 from talk_to_pdf.core.config import settings
+from talk_to_pdf.api.routers import document
 
 logging.basicConfig(
     level=logging.INFO,
@@ -13,6 +14,7 @@ app = FastAPI(
     title=settings.project_name,
     version=settings.version
 )
+app.include_router(document.router)
 
 @app.get("/health")
 async def health_check():

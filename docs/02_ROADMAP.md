@@ -64,8 +64,8 @@ Deliverables
 - Database connection
 - Migration setup
 - Testing infrastructure
-- Docker
-- CI-ready project layout
+- Docker (PostgreSQL, RabbitMQ, Redis)
+- Microservices project layout (`main-api` and `ai-engine`)
 
 Learning
 
@@ -74,6 +74,7 @@ Learning
 - Configuration Management
 - Repository Pattern
 - TDD workflow
+- Distributed Systems Basics (Message Brokers, In-Memory Caches)
 
 Interview Topics
 
@@ -132,12 +133,15 @@ Deliverables
 - Text extraction
 - Cleaning pipeline
 - Processing status tracking
+- Async task dispatching (RabbitMQ)
+- AI Engine worker consumption
 
 Learning
 
 - Parsing
 - Document normalization
-- Background processing concepts
+- Distributed message queues
+- Background processing in a separate service
 
 Interview Topics
 
@@ -191,7 +195,7 @@ Represent chunks as vectors.
 
 Deliverables
 
-- Embedding generation
+- Embedding generation (AI Engine)
 - Embedding storage
 - Embedding abstraction
 
@@ -200,6 +204,7 @@ Learning
 - Vector representations
 - Embedding models
 - Similarity search
+- Microservice data synchronization
 
 Interview Topics
 
@@ -283,12 +288,14 @@ Deliverables
 
 - Streaming responses
 - Token streaming
-- Client events
+- Client events (SSE)
+- Redis Pub/Sub for cross-service streaming
 
 Learning
 
 - Async generators
 - Streaming APIs
+- Pub/Sub architecture for microservices
 - UX considerations
 
 Interview Topics

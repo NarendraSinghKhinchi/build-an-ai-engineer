@@ -8,6 +8,7 @@ from sqlalchemy.ext.asyncio import async_engine_from_config
 from alembic import context
 from talk_to_pdf.core.config import settings
 from talk_to_pdf.core.database import Base
+from talk_to_pdf.models.document import Document
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
